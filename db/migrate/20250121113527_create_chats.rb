@@ -4,7 +4,7 @@ class CreateChats < ActiveRecord::Migration[7.2]
       t.string :app_token
       t.integer :number
       t.integer :message_count
-       
+
       t.timestamps
     end
   end
