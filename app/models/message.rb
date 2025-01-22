@@ -1,10 +1,10 @@
 class Message < ApplicationRecord
     # associations
-    belongs_to :chat, :foreign_key => [:app_token, :chat_number], :primary_key => [:app_token, :number]
+    belongs_to :chat, foreign_key: [ :app_token, :chat_number ], primary_key: [ :app_token, :number ]
 
     # validations
     validates :number, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-    validates :number, uniqueness: { scope: [:app_token, :chat_number] }
+    validates :number, uniqueness: { scope: [ :app_token, :chat_number ] }
     validates :text, :sender, presence: true
 
     # call backs
@@ -27,5 +27,4 @@ class Message < ApplicationRecord
             sender: self.sender
         }
     end
-
 end

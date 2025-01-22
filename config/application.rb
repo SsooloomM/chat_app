@@ -41,7 +41,7 @@ module ChatApp
     # Skip views, helpers and assets when generating a new resource.
     config.generators do |g|
       g.test_framework :rspec, fixture: false
-      g.fixture_replacement :factory_bot, dir: 'spec/factories'
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
 
     config.api_only = true

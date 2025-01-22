@@ -1,7 +1,7 @@
 ar:
   app: 
     name_already_exists: "الاسم (%{name}) مستخدم بالفعل. برجاء اختيار اسم اخر."
-    app_not_exists: 'التطبيق غير موجود'
+    app_not_exists: "التطبيق غير موجود"
   chat:
     chat_not_exists: "لا يوجد محادثة برقم %{number} في التطبيق (%{token})."
   message:

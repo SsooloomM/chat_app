@@ -1,7 +1,7 @@
 class App < ApplicationRecord
     # associations
-    has_many :chats, :foreign_key => :app_token, :primary_key => :token, dependent: :destroy
-    
+    has_many :chats, foreign_key: :app_token, primary_key: :token, dependent: :destroy
+
     # validations
     validates :name, :token, presence: true, uniqueness: true
     validates :chat_count, :chat_number, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
@@ -29,5 +29,4 @@ class App < ApplicationRecord
             chat_count: chat_count
         }
     end
-
 end

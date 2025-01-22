@@ -1,15 +1,15 @@
 class Chat < ApplicationRecord
     # associations
-    belongs_to :app, :foreign_key => :app_token, :primary_key => :token
+    belongs_to :app, foreign_key: :app_token, primary_key: :token
 
     has_many :messages, dependent: :destroy,
-        :foreign_key => [:app_token, :chat_number], :primary_key => [:app_token, :number]
-    
+        foreign_key: [ :app_token, :chat_number ], primary_key: [ :app_token, :number ]
+
     # validations
     validates :message_count, :number, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
     validates :number, uniqueness: { scope: :app_token }
 
-    
+
     # call backs
     before_validation(on: :create) do
         self.message_count = 0
@@ -31,5 +31,4 @@ class Chat < ApplicationRecord
             message_count: self.message_count
         }
     end
-
 end
