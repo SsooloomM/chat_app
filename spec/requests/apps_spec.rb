@@ -10,7 +10,7 @@ RSpec.describe "Apps", type: :request do
 
       get apps_path
       expect(response).to have_http_status(200)
-      expect(response.body).to eq(App.all.map(&:serialize).to_json) 
+      expect(response.body).to eq(App.all.map(&:serialize).to_json)
     end
   end
 
