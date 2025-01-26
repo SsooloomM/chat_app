@@ -1,4 +1,12 @@
 services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
   db:
     image: postgres
     restart: always
