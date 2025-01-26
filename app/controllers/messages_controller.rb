@@ -2,11 +2,10 @@ class MessagesController < ApplicationController
     before_action :prepare_chat
 
     def index
-        render json: { messages: @chat.messages.map(&:serialize) }, status: 200
+        render json: { messages: @chat.messages.as_json }, status: 200
     end
 
     def create
-        puts params
         new_message = params.require(:message).permit(:text, :sender)
         message = @chat.messages.new(new_message)
         if message.save

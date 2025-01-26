@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: chats
+#
+#  id               :bigint           not null, primary key
+#  app_token        :string
+#  message_count    :integer          default(0)
+#  message_sequence :integer          default(0)
+#  number           :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+# Indexes
+#
+#  index_chats_on_app_token_and_number  (app_token,number) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_08c3435968  (app_token => apps.token)
+#
 class Chat < ApplicationRecord
     # associations
     belongs_to :app, foreign_key: :app_token, primary_key: :token
@@ -10,25 +30,19 @@ class Chat < ApplicationRecord
     validates :number, uniqueness: { scope: :app_token }
 
 
-    # call backs
+    # callbacks
     before_validation(on: :create) do
-        self.message_count = 0
-        self.message_number = 0
         if app.present?
-            Chat.transaction do
-                app.with_lock do
-                    app.chat_number += 1
-                    self.number = app.chat_number
-                    app.save
-                end
+            app.with_lock do
+                app.chat_sequence += 1
+                self.number = app.chat_sequence
+                app.save
             end
         end
     end
 
-    def serialize
-        {
-            number: self.number,
-            message_count: self.message_count
-        }
+    # serialization
+    def as_json(options={})
+        super(only: [:number, :message_count])
     end
 end

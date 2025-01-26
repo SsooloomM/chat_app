@@ -10,7 +10,7 @@ RSpec.describe "Apps", type: :request do
 
       get apps_path
       expect(response).to have_http_status(200)
-      expect(response.body).to eq(App.all.map(&:serialize).to_json)
+      expect(response.body).to eq(App.all.as_json.to_json)
     end
   end
 
@@ -27,7 +27,7 @@ RSpec.describe "Apps", type: :request do
       app = App.first
       expect(app.name).to eq(name)
       expect(app.chat_count).to eq(0)
-      expect(app.chat_number).to eq(0)
+      expect(app.chat_sequence).to eq(0)
     end
   end
 

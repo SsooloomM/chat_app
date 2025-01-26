@@ -3,7 +3,7 @@ class ChatsController < ApplicationController
 
     def index
         render json: {
-            chats: @app.chats.map(&:serialize)
+            chats: @app.chats.as_json
         }, status: 200
     end
 

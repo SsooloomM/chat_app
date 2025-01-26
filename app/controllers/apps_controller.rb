@@ -1,7 +1,7 @@
 class AppsController < ApplicationController
     def index
         apps = App.all
-        render json: apps.map(&:serialize), stauts: 200
+        render json: apps.as_json, stauts: 200
     end
 
     def create
