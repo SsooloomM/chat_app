@@ -29,5 +29,5 @@ end
 
 group :development do
   gem "pry"
-  gem 'annotate'
+  gem "annotate"
 end

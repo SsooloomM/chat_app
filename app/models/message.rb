@@ -40,7 +40,7 @@ class Message < ApplicationRecord
     end
 
     # serialization
-    def as_json(options={})
-        super(only: [:number, :sender, :text])
+    def as_json(options = {})
+        super(only: [ :number, :sender, :text ])
     end
 end

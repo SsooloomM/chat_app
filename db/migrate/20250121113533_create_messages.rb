@@ -10,8 +10,8 @@ class CreateMessages < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_foreign_key :messages, :chats, column: [:app_token, :chat_number], primary_key: [:app_token, :number]
+    add_foreign_key :messages, :chats, column: [ :app_token, :chat_number ], primary_key: [ :app_token, :number ]
 
-    add_index :messages, [:app_token, :chat_number]   
+    add_index :messages, [ :app_token, :chat_number ]
   end
 end

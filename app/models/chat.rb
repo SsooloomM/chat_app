@@ -42,7 +42,7 @@ class Chat < ApplicationRecord
     end
 
     # serialization
-    def as_json(options={})
-        super(only: [:number, :message_count])
+    def as_json(options = {})
+        super(only: [ :number, :message_count ])
     end
 end

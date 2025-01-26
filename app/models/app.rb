@@ -37,7 +37,7 @@ class App < ApplicationRecord
     end
 
     # serialization
-    def as_json(options={})
-        super(only: [:token, :name, :chat_count])
+    def as_json(options = {})
+        super(only: [ :token, :name, :chat_count ])
     end
 end

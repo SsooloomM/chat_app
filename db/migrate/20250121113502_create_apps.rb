@@ -10,6 +10,5 @@ class CreateApps < ActiveRecord::Migration[7.2]
     end
 
     add_index :apps, :token, unique: true
-    
   end
 end

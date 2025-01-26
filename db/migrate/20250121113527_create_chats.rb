@@ -10,7 +10,6 @@ class CreateChats < ActiveRecord::Migration[7.2]
     end
 
     add_foreign_key :chats, :apps, column: :app_token, primary_key: :token
-    add_index :chats, [:app_token, :number], unique: true
-
+    add_index :chats, [ :app_token, :number ], unique: true
   end
 end
