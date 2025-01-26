@@ -28,4 +28,11 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  app: 
+    name_already_exists: "App with name (%{name}) already exists. try another name."
+    app_not_exists: "App is not exists."
+  chat:
+    chat_not_exists: "No chat wiht number %{number} are available in app (%{token})"
+  message:
+    message_not_complete: "Message is not complete."
+    message_not_exists: "Message with number %{number} is not exists in chat (%{app_token}-%{chat_number})."
