@@ -250,16 +250,7 @@ GEM
       rubocop-rails
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
-    serverengine (2.0.7)
-      sigdump (~> 0.2.2)
     set (1.1.1)
-    sigdump (0.2.5)
-    sneakers (2.11.0)
-      bunny (~> 2.12)
-      concurrent-ruby (~> 1.0)
-      rake
-      serverengine (~> 2.0.5)
-      thor
     sorted_set (1.0.3)
       rbtree
       set (~> 1.0)
@@ -297,7 +288,6 @@ DEPENDENCIES
   rails (~> 7.2.2, >= 7.2.2.1)
   rspec-rails
   rubocop-rails-omakase
-  sneakers
   tzinfo-data
 
 BUNDLED WITH
