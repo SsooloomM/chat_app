@@ -1,4 +1,4 @@
-FROM ruby:3.1.0-slim AS base
+FROM ruby:3.3.7-slim AS base
 
 
 WORKDIR /rails
