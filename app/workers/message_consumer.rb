@@ -1,10 +1,12 @@
 class MessageConsumer
+    MESSAGES_QUEUE = "messages"
+
     def self.start
-        channel = RabbitMQ.channel
-        queue = channel.queue("messages", durable: true)
         consumers_count = ENV["MESSAGE_CONSUMERS_COUNT"].to_i || 1
         consumers_count.times do |i|
-            t = Thread.new do
+            Thread.new do
+                channel = RabbitMQ.channel
+                queue = channel.queue(MESSAGES_QUEUE, durable: true)
                 consumer_tag = "#{queue.name}_consumer_#{i}"
                 queue.subscribe(manual_ack: true, consumer_tag: consumer_tag) do |delivery_info, properties, payload|
                     message = JSON.parse payload
