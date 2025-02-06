@@ -9,6 +9,7 @@ services:
     environment:
       RAILS_ENV: development
       DATABASE_HOST: db
+      RABBITMQ_HOST: rabbitmq
     volumes:
       - "./:/rails"
   db:
@@ -38,8 +39,16 @@ services:
       - db
     environment:
       RAILS_ENV: development
+      DATABASE_HOST: db
+      RABBITMQ_HOST: rabbitmq
+      REDIS_HOST: redis
     volumes:
       - "./:/rails"
 
+  redis: 
+     image: redis
+     ports:
+       - '6379:6379'
+  
 volumes:
   pgdata:
