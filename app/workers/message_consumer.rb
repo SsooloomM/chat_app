@@ -11,7 +11,7 @@ class MessageConsumer
                 queue.subscribe(manual_ack: true, consumer_tag: consumer_tag) do |delivery_info, properties, payload|
                     message = JSON.parse payload
                     c = Chat.find_by(app_token: message["app_token"], number: message["chat_number"])
-                    m = c.messages.create(text: message["text"], sender: message["sender"])
+                    m = c.messages.create(text: message["text"], sender: message["sender"], number: message["number"])
                     channel.ack(delivery_info.delivery_tag)
                 end
             end

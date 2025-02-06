@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     end
   end
 
+  require "sidekiq/web"
+  require "sidekiq/cron/web"
+  mount Sidekiq::Web => "/sidekiq"
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

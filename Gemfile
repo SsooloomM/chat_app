@@ -33,3 +33,11 @@ group :development do
   gem "pry"
   gem "annotate"
 end
+
+group :test do
+  gem "rspec-sidekiq"
+end
+
+gem "sidekiq", "~> 7.3"
+gem "sidekiq-cron"
+gem "redis-rails"

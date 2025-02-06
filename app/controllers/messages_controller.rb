@@ -9,12 +9,25 @@ class MessagesController < ApplicationController
         new_message = params.require(:message).permit(:text, :sender)
         message = @chat.messages.new(new_message)
         begin
+            redis_key = "chat:#{@chat.app_token}:#{@chat.number}"
+            last_message_number = REDIS.get(redis_key)
+
+            if last_message_number.blank?
+                @chat.with_lock do
+                    message_number = @chat.message_sequence + 1
+                    REDIS.set(redis_key, message_number)
+                end
+            else
+                message_number = last_message_number.to_i + 1
+                REDIS.set(redis_key, message_number)
+            end
+            message.number = message_number
             MessagePublisher.publish("messages", message)
             render json: {
                 message: message.as_json
             }
         rescue Exception => e
-            render json: e.messages
+            render json: e
         end
     end
 
