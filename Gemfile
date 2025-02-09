@@ -41,3 +41,6 @@ end
 gem "sidekiq", "~> 7.3"
 gem "sidekiq-cron"
 gem "redis-rails"
+
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'

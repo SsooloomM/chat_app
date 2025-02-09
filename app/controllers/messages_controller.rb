@@ -45,6 +45,11 @@ class MessagesController < ApplicationController
         end
     end
 
+    def search
+        text = params[:text]
+        render json: Message.search(text, @chat.app_token, @chat.number)
+    end
+
     private
     def prepare_chat
         token = params[:app_token]
