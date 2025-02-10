@@ -2,6 +2,10 @@ require 'rails_helper'
 RSpec.describe UpdateMessageCountJob, type: :job do
     describe '#perform' do
         let(:chat) { create(:chat) }
+        before do
+            allow_any_instance_of(Message).to receive(:__elasticsearch__)
+              .and_return(double("Elasticsearch Client", index_document: true, delete_document: true))
+          end
 
         it 'performs the job' do
             sz = 3

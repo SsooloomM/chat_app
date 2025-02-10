@@ -39,7 +39,7 @@ class Message < ApplicationRecord
         end
     end
 
-    
+
     # elasticsearch
     include Searchable
 
@@ -48,7 +48,7 @@ class Message < ApplicationRecord
         indexes :chat_number, type: :text
         indexes :text, type: :text
     end
-    
+
     def self.search(partial_text, token, chat_number)
         __elasticsearch__.search(
             query: {

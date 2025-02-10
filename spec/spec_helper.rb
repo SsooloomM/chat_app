@@ -37,6 +37,13 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  require 'webmock/rspec'
+  config.before :each do
+    # Stub Elasticsearch requests
+    WebMock.disable_net_connect!(allow_localhost: true)
+    WebMock.stub_request(:any, %r{localhost:9200/.*}).to_return(status: 200, body: '{}', headers: {})
+  end
+
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards
   # compatibility in RSpec 3). It causes shared context metadata to be

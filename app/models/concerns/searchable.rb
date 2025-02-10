@@ -4,7 +4,7 @@ module Searchable
     included do
         include Elasticsearch::Model
         include Elasticsearch::Model::Callbacks
-    
+
         def self.search(query)
             raise "DEFINE SEARCH"
         end
@@ -17,13 +17,13 @@ module Searchable
                 raise NotImplementedError, "You must implement the mapping block in your model"
             end
         end
-    
+
         def self.inherited(subclass)
             super
             subclass.mapping do
                 raise NotImplementedError, "You must implement the mapping block in #{subclass}"
             end
-            
+
             subclass.search(query) do
                 raise NotImplementedError, "You must implement the search method in #{subclass}"
             end
@@ -32,6 +32,5 @@ module Searchable
         def self.search(query)
             raise NotImplementedError, "You must implement the search method in your model" unless @search_block
         end
-    
     end
 end

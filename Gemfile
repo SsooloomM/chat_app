@@ -36,11 +36,12 @@ end
 
 group :test do
   gem "rspec-sidekiq"
+  gem "webmock"
 end
 
 gem "sidekiq", "~> 7.3"
 gem "sidekiq-cron"
 gem "redis-rails"
 
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+gem "elasticsearch-model"
+gem "elasticsearch-rails"
