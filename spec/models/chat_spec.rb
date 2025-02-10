@@ -19,6 +19,7 @@
 #  fk_rails_08c3435968  (app_token => apps.token)
 #
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Chat, type: :model do
   describe "initial values" do
@@ -35,6 +36,10 @@ RSpec.describe Chat, type: :model do
 
   describe "creating messages increase the number" do
     let (:chat) { create(:chat) }
+    before do
+      allow_any_instance_of(Message).to receive(:__elasticsearch__)
+        .and_return(double("Elasticsearch Client", index_document: true, delete_document: true))
+    end
 
     it "the #message_sequence by one" do
       create(:message, chat: chat)

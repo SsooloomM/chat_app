@@ -39,6 +39,30 @@ class Message < ApplicationRecord
         end
     end
 
+
+    # elasticsearch
+    include Searchable
+
+    mapping do
+        indexes :app_token, type: :text
+        indexes :chat_number, type: :text
+        indexes :text, type: :text
+    end
+
+    def self.search(partial_text, token, chat_number)
+        __elasticsearch__.search(
+            query: {
+                query_string: {
+                    query: "app_token:#{token} AND chat_number:#{chat_number} AND text:*#{partial_text}*"
+                }
+            }
+        ).records
+    end
+
+    after_commit do
+        __elasticsearch__.index_document
+    end
+
     # serialization
     def as_json(options = {})
         super(only: [ :number, :sender, :text, :app_token, :chat_number ])

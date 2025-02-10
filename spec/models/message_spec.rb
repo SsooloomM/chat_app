@@ -24,6 +24,11 @@ require 'rails_helper'
 RSpec.describe Message, type: :model do
   describe "message_sequence" do
     let(:chat) { create(:chat) }
+    before do
+      allow_any_instance_of(Message).to receive(:__elasticsearch__)
+        .and_return(double("Elasticsearch Client", index_document: true, delete_document: true))
+    end
+
     it "should create messages in the righ sequence" do
       message1 = create(:message, chat: chat)
       message2 = create(:message, chat: chat)
