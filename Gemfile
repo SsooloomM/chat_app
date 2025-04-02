@@ -39,7 +39,7 @@ group :test do
   gem "webmock"
 end
 
-gem "sidekiq", "~> 7.3"
+gem "sidekiq", "~> 8.0"
 gem "sidekiq-cron"
 gem "redis-rails"
 
